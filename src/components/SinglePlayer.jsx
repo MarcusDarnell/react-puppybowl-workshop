@@ -12,23 +12,29 @@ export default function SinglePlayer() {
       try{ 
         const player = await getSinglePlayer(id)
         setPlayer(player)
-      }catch(e){
+      } catch (e) {
       console.error(e)
       }
     }  
     updatePlayer()
     },[])
 
-    if (!player) {
-        return <div>Loading {id}. . . </div>
+    async function deleteHandler(Id) {
+        await deletePlayer(Id)
+
+        navigate('/')
     }
 
-    return <article key={player.id}>
+    if (!player) {
+        return <div>Loading {id} . . . </div>
+    }
+
+  return <article key={player.id}>
     <h2>
       <img src={player.imageUrl} />
       {player.name}
     </h2>
-    <h3>{player.imageUrl}</h3>
+    <h3>{player.breed}</h3>
+    <button onClick={() => deleteHandler(id)}>DELETE!</button>
     </article> 
-    
 }

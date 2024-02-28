@@ -7,12 +7,16 @@ export const getAllPlayers = async () => {
     console.log('data', data)
     return data.data.players
 }
-export const getSinglePlayer = async () => {
+export const getSinglePlayer = async (playerId) => {
     const { data } = await axios.get(`${BASE_URL}/playerId`)
     console.log('data', data)
     return data.data.player
 }
 
-export const addPlayer = async () => {
-    const { data } = await axios.post(BASE_URL, player)
+export const addPlayer = async (player) => {
+    await axios.post(BASE_URL, player)
+}
+
+export const deletePlayer = async (playerId) => {
+    await axios.post(`${BASE_URL}/playerId`)
 }
